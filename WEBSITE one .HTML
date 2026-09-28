@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio Nanda 1</title>
+    <!-- Font Awesome untuk Icon Media Sosial -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* --- RESET & COLOR PALETTE MODERN ELEGANT --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        :root {
+            --bg-color: #0f172a;          /* Dark Slate Blue */
+            --card-bg: #1e293b;           /* Card Dark Gray Blue */
+            --accent-color: #38bdf8;      /* Vibrant Sky Blue */
+            --accent-hover: #0284c7;      /* Darker Sky Blue */
+            --text-main: #f8fafc;         /* Bright Soft White */
+            --text-muted: #94a3b8;        /* Slate Muted Text */
+            --border-color: #334155;      /* Subtle Border Accent */
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            width: 100%;
+            flex: 1;
+        }
+
+        /* --- HERO / BERANDA SECTION --- */
+        #hero {
+            min-height: 75vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        #hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 35px;
+            color: var(--text-main);
+            background: linear-gradient(135deg, #ffffff 0%, var(--accent-color) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            max-width: 750px;
+        }
+
+        .btn-nav {
+            background-color: var(--card-bg);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-nav:hover {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+            color: #0f172a;
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px rgba(56, 189, 248, 0.25);
+        }
+
+        /* --- NAVBAR ATAS --- */
+        .top-nav {
+            display: none;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .btn-back {
+            background-color: var(--card-bg);
+            color: var(--accent-color);
+            border: 1px solid var(--border-color);
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .btn-back:hover {
+            background-color: var(--accent-color);
+            color: #0f172a;
+        }
+
+        /* --- HALAMAN / PAGES CONTROL --- */
+        .page {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- SECTIONS COMMON STYLES --- */
+        .section-title {
+            display: inline-block;
+            background-color: var(--card-bg);
+            color: var(--accent-color);
+            padding: 10px 22px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border: 1px solid var(--border-color);
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .content-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 35px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+        }
+
+        /* --- SECTION: RIWAYAT SEKOLAH --- */
+        .school-list {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .school-list li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 14px;
+            font-size: 1.1rem;
+            color: var(--text-main);
+        }
+
+        .school-list li::before {
+            content: "•";
+            color: var(--accent-color);
+            font-size: 2rem;
+            position: absolute;
+            left: 0;
+            top: -7px;
+        }
+
+        .school-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .photo-placeholder {
+            background-color: #0f172a;
+            border-radius: 12px;
+            height: 180px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            border: 1px dashed var(--border-color);
+            color: var(--text-muted);
+        }
+
+        .photo-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 10px;
+        }
+
+        /* --- SECTION: DATA DIRI SAYA --- */
+        .bio-wrapper {
+            display: flex;
+            flex-direction: column-reverse;
+            gap: 30px;
+        }
+
+        @media (min-width: 768px) {
+            .bio-wrapper {
+                display: grid;
+                grid-template-columns: 2fr 1fr;
+                align-items: start;
+            }
+        }
+
+        .profile-photo {
+            width: 100%;
+            max-width: 250px;
+            height: 250px;
+            margin: 0 auto;
+            border-radius: 16px;
+            background-color: #0f172a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--text-muted);
+            border: 1px dashed var(--border-color);
+            overflow: hidden;
+        }
+
+        .profile-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* --- SECTION: MEDIA SOSIAL --- */
+        .social-links {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .social-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.1rem;
+        }
+
+        .social-item i {
+            width: 30px;
+            font-size: 1.6rem;
+            color: var(--accent-color);
+        }
+
+        .social-item a {
+            color: var(--text-main);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .social-item a:hover {
+            color: var(--accent-color);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 30px 0 10px 0;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- NAVBAR ATAS -->
+        <div id="top-nav" class="top-nav">
+            <button class="btn-back" onclick="openPage('home')"><i class="fas fa-arrow-left"></i> Kembali ke Beranda</button>
+        </div>
+
+        <!-- BERANDA (HERO PAGE) -->
+        <div id="page-home" class="page active">
+            <header id="hero">
+                <h1>HI, I AM NANDA</h1>
+                <nav class="nav-buttons">
+                    <button class="btn-nav" onclick="openPage('riwayat-sekolah')">RIWAYAT SEKOLAH</button>
+                    <button class="btn-nav" onclick="openPage('data-diri')">DATA DIRI SAYA</button>
+                    <button class="btn-nav" onclick="openPage('media-sosial')">MEDIA SOSIAL</button>
+                    <button class="btn-nav" onclick="openPage('keseharian')">KESEHARIAN</button>
+                    <button class="btn-nav" onclick="openPage('perjalananku')">PERJALANANKU</button>
+                </nav>
+            </header>
+        </div>
+
+        <!-- 1. HALAMAN: RIWAYAT SEKOLAH -->
+        <div id="page-riwayat-sekolah" class="page">
+            <div class="section-title">RIWAYAT SEKOLAH</div>
+            <div class="content-card">
+                <ul class="school-list">
+                    <li>SD KRISTEN SATYA WACANA (2016-2022)</li>
+                    <li>SMP KR SATYA WACANA (2022-2025)</li>
+                    <li>SMA KR 1 SALATIGA</li>
+                </ul>
+
+                <div class="school-grid">
+                    <!-- Ganti bagian span di bawah dengan <img src="nama_file.jpg"> jika foto sudah ada -->
+                    <div class="photo-placeholder">
+                        <img src="SMUQ.png" alt="Foto SMA">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. HALAMAN: DATA DIRI SAYA -->
+        <div id="page-data-diri" class="page">
+            <div class="section-title">DATA DIRI SAYA</div>
+            <div class="content-card">
+                <div class="bio-wrapper">
+                    <div class="bio-text">
+                        <h3 style="color: var(--accent-color); margin-bottom: 10px;">PENJELASAN</h3>
+                        <p>Tuliskan deskripsi lengkap mengenai diri Anda di sini.</p>
+                    </div>
+                    <!-- Ganti bagian span di bawah dengan <img src="nama_file.jpg"> jika foto profil sudah ada -->
+                    <div class="profile-photo">
+                        <img src="NANDA.jpeg" alt="Foto Nanda">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. HALAMAN: MEDIA SOSIAL -->
+        <div id="page-media-sosial" class="page">
+            <div class="section-title">MEDIA SOSIAL</div>
+            <div class="content-card">
+                <div class="social-links">
+                    <div class="social-item">
+                        <i class="fab fa-tiktok"></i>
+                        <span>TIKTOK : <a href="https://tiktok.com/@baiklah_59" target="_blank">@baiklah_59</a></span>
+                    </div>
+                    <div class="social-item">
+                        <i class="fab fa-instagram"></i>
+                        <span>IG : <a href="https://instagram.com/0knnda_" target="_blank">0knnda_</a></span>
+                    </div>
+                    <div class="social-item">
+                        <i class="fab fa-github"></i>
+                        <span>Github : <a href="#" target="_blank">.....</a></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. HALAMAN: KESEHARIAN -->
+        <div id="page-keseharian" class="page">
+            <div class="section-title">KESEHARIAN</div>
+            <div class="content-card">
+                <p>AKU ISI SENDIRI NANTI</p>
+            </div>
+        </div>
+
+        <!-- 5. HALAMAN: PERJALANANKU -->
+        <div id="page-perjalananku" class="page">
+            <div class="section-title">PERJALANANKU</div>
+            <div class="content-card">
+                <p>AKU ISI SENDIRI</p>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Nanda. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- JAVASCRIPT UNTUK PINDAH HALAMAN -->
+    <script>
+        function openPage(pageName) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+
+            const selectedPage = document.getElementById('page-' + pageName);
+            if (selectedPage) {
+                selectedPage.classList.add('active');
+            }
+
+            const topNav = document.getElementById('top-nav');
+            if (pageName === 'home') {
+                topNav.style.display = 'none';
+            } else {
+                topNav.style.display = 'flex';
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
